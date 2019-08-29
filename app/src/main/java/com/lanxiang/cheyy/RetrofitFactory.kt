@@ -1,4 +1,4 @@
-package com.lanxiang.mvvm.http
+package com.lanxiang.cheyy
 
 import com.blankj.utilcode.util.AppUtils
 import com.google.gson.Gson
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
  */
 class RetrofitFactory private constructor() {
     //私有化主构造 TODO 可学习主构造和其他次构造
-    private val retrofit: Retrofit
+    private lateinit var retrofit: Retrofit
 
     //companion object修饰为伴生对象,伴生对象在类中只能存在一个，
     // 注意单独的object可以使对象表达式也可以是对象声明，最常见静态常量和静态方法类
@@ -34,12 +34,16 @@ class RetrofitFactory private constructor() {
     }
 
     init {
+
+    }
+    fun getRetrofit(baseUrl:String):Retrofit{
         retrofit = Retrofit.Builder()
-            .baseUrl(Constant.SERVER_ADDRESS)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(initOkHttpClient())
             .build()
+        return retrofit
     }
     /**
      * 设置公共参数
@@ -66,7 +70,7 @@ class RetrofitFactory private constructor() {
             val originalRequest = chain.request()
             val requestBuilder = originalRequest.newBuilder()
                 // Provide your custom header here
-//                .header("token", token)
+                .header("token", "54354364364363463343")
                 .method(originalRequest.method(), originalRequest.body())
             val request = requestBuilder.build()
             chain.proceed(request)

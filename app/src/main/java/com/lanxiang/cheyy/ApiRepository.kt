@@ -1,7 +1,7 @@
 package com.lanxiang.cheyy
 
 import com.lanxiang.mvvm.base.BaseRepository
-import com.lanxiang.mvvm.http.RetrofitFactory
+import com.lanxiang.mvvm.common.Constant
 
 /**
  *
@@ -12,6 +12,6 @@ import com.lanxiang.mvvm.http.RetrofitFactory
  */
 open class ApiRepository : BaseRepository() {
     protected val apiService by lazy {
-        RetrofitFactory.instance.create(ApiService::class.java)
+        RetrofitFactory.instance.getRetrofit(Constant.SERVER_ADDRESS).create(ApiService::class.java)
     }
 }

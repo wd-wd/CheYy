@@ -54,28 +54,26 @@ abstract class LifecycleActivity<T : BaseViewModel<*>> : BaseActivity() {
     /**
      * 加载中
      */
-    open fun showLoadingView() {
-        loadStateView?.showLoading()
-    }
+   abstract fun showLoadingView()
+
 
     /**
      * 加载数据成功
      */
-    open fun showSuccessView() {
+    open fun showSuccessView(){
         loadStateView?.showContent()
     }
+
+
 
     /**
      * 数据为空界面
      */
-    open fun showEmptyView() {
-        loadStateView?.showEmpty()
-    }
+    abstract fun showEmptyView()
+
 
     /**
      * 加载失败界面
      */
-    open fun showErrorView() {
-        loadStateView?.showError()
-    }
+    abstract fun showErrorView()
 }
