@@ -30,19 +30,11 @@ abstract class LifecycleActivity<T : BaseViewModel<*>> : BaseActivity() {
      */
     abstract fun dataObserver()
 
-    /**
-     * 初始化
-     */
-    override fun initData() {
-        showLoadingView()
-    }
-
     private val observer by lazy {
         Observer<State> { state: State? ->
             state?.let {
                 when (state.code) {
                     //成功显示内容
-                    StateType.LOADING -> showLoadingView()
                     StateType.SUCCESS -> showSuccessView()
                     StateType.EMPTY -> showEmptyView()
                     StateType.ERROR -> showErrorView()

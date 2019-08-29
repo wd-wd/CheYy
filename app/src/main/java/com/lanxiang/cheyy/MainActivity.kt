@@ -7,6 +7,10 @@ import com.lanxiang.mvvm.base.LifecycleActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : LifecycleActivity<MainViewModel>() {
+    override fun initData() {
+
+    }
+
     override fun showLoadingView() {
         loadStateView?.showLoading()
     }
@@ -19,26 +23,26 @@ class MainActivity : LifecycleActivity<MainViewModel>() {
     override fun showErrorView() {
 
     }
-
+var map:HashMap<String,String> ?= null
     override fun layoutId(): Int = R.layout.activity_main
     override fun initView() {
         super.initView()
-        var map = HashMap<String, String>()
-        map["page"] = "1"
+        map = HashMap<String, String>()
+        map!!["page"] = "1"
         tv.setOnClickListener {
             showLoadingView()
-            viewModel.getMainData(map) }
+            viewModel.getMainData(map!!) }
     }
 
     override fun dataObserver() {
         showSuccessView()
         viewModel.liveData.observe(this, Observer {
-
+            showSuccessView()
         })
     }
 
     override fun reTryData() {
-
+        viewModel.getMainData(map!!)
     }
 
 
