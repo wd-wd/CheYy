@@ -20,8 +20,8 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(layoutId())
         initView()
         initData()
-        initListener()
         reTryData()
+        initListener()
     }
 
     private fun initListener() {
