@@ -3,6 +3,7 @@ package com.lanxiang.cheyy
 import android.arch.lifecycle.MutableLiveData
 import android.net.NetworkInfo
 import android.util.Log
+import android.widget.Toast
 import com.lanxiang.mvvm.base.BaseRepository
 import com.lanxiang.mvvm.common.Constant
 import com.lanxiang.mvvm.http.State
@@ -26,6 +27,8 @@ import io.reactivex.disposables.Disposable
     val repository: BaseRepository
 ) : Observer<T> {
     override fun onError(e: Throwable) {
+        Toast.makeText(CheYyApplication.context,HandleException.ExceptionHandle(e),Toast.LENGTH_LONG).show()
+        HandleException.ExceptionHandle(e)
         loadState.postValue(State(StateType.ERROR))
         Log.d("onError",e.message)
     }

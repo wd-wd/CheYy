@@ -6,10 +6,7 @@ import com.lanxiang.mvvm.http.ErrorCode
 import com.orhanobut.logger.Logger
 import org.json.JSONException
 import retrofit2.HttpException
-import java.net.ConnectException
-import java.net.SocketException
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
+import java.net.*
 import java.text.ParseException
 
 /**
@@ -29,16 +26,17 @@ class HandleException {
             //网络超时
             if (e is SocketTimeoutException) {
                 Logger.e("TAG", "网络连接超时: " + e.message)
-                errorMsg = "网络连接超时"
+                errorMsg = "网络连接超时"+e.message
                 errorCode = ErrorCode.NET_TIME_OUT_ERROR
             }
             //网络连接异常
             else if (e is ConnectException
                 ||e is SocketException
                 || e is HttpException
-                || e is UnknownHostException){
+                || e is UnknownHostException||e is NoRouteToHostException
+            ){
                 Logger.e("TAG", "网络连接异常: " + e.message)
-                errorMsg = "网络连接异常"
+                errorMsg = "网络连接异常"+e.message
                 errorCode = ErrorCode.NET_NOT_ERROR
             }
             //解析错误
@@ -47,13 +45,13 @@ class HandleException {
                 || e is ParseException
                 ||e is JsonSyntaxException){
                 Logger.e("TAG", "数据解析异常: " + e.message)
-                errorMsg = "数据解析异常"
+                errorMsg = "数据解析异常"+e.message
                 errorCode = ErrorCode.NET_NOT_ERROR
             }
             //服务器错误
             else if (e is ApiException){
                 Logger.e("TAG", "服务器错误: " + e.message)
-                errorMsg = "服务器错误"
+                errorMsg = "服务器错误"+e.message
                 errorCode = ErrorCode.SERVICE_ERROR
             }else {//未知错误
                 try {

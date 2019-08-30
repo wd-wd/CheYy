@@ -1,6 +1,8 @@
 package com.lanxiang.cheyy
 
+import android.content.Context
 import com.lanxiang.mvvm.base.BaseApplication
+import kotlin.properties.Delegates
 
 /**
  *
@@ -10,4 +12,13 @@ import com.lanxiang.mvvm.base.BaseApplication
  * @desc:app初始化
  */
 class CheYyApplication: BaseApplication() {
+    companion object{
+        var context: Context by Delegates.notNull()
+            private set
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        context = applicationContext
+    }
 }
