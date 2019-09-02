@@ -47,7 +47,8 @@ abstract class LifecycleActivity<T : BaseViewModel<*>> : BaseActivity() {
      * 加载中
      */
     open fun showLoadingView(){
-        loadStateView?.showLoading()
+//        loadStateView?.showLoading()
+        dialogUtils.showProgress(this)
     }
 
 
@@ -55,6 +56,7 @@ abstract class LifecycleActivity<T : BaseViewModel<*>> : BaseActivity() {
      * 加载数据成功
      */
     private fun showSuccessView() {
+        dialogUtils.dismissProgress()
         loadStateView?.showContent()
     }
 
@@ -62,6 +64,7 @@ abstract class LifecycleActivity<T : BaseViewModel<*>> : BaseActivity() {
      * 数据为空界面
      */
     private fun showEmptyView(){
+        dialogUtils.dismissProgress()
         loadStateView?.showEmpty()
     }
 
@@ -70,6 +73,7 @@ abstract class LifecycleActivity<T : BaseViewModel<*>> : BaseActivity() {
      * 加载失败界面
      */
     private fun showErrorView(){
+        dialogUtils.dismissProgress()
         loadStateView?.showError()
     }
 }

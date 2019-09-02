@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
  * @desc:线程控制器工具类
  */
 object SchedulerUtils {
-    fun <T> ioAndMianScheduler(): ObservableTransformer<T, T> = ObservableTransformer { it ->
+    fun <T> ioAndMainScheduler(): ObservableTransformer<T, T> = ObservableTransformer { it ->
         it.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

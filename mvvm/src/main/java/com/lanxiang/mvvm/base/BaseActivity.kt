@@ -5,6 +5,7 @@ import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.lanxiang.common.view.MultipleStatusView
+import com.lanxiang.mvvm.utlis.DialogUtils
 
 /**
  *
@@ -15,6 +16,7 @@ import com.lanxiang.common.view.MultipleStatusView
  */
 abstract class BaseActivity : AppCompatActivity() {
     protected var loadStateView: MultipleStatusView? = null
+    protected val dialogUtils:DialogUtils = DialogUtils()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())

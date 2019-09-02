@@ -10,6 +10,7 @@ import com.lanxiang.mvvm.http.State
 import com.lanxiang.mvvm.http.StateType
 import com.lanxiang.mvvm.http.exception.HandleException
 import com.lanxiang.mvvm.http.response.BaseResponse
+import com.lanxiang.mvvm.utlis.DialogUtils
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -26,6 +27,7 @@ import io.reactivex.disposables.Disposable
     val loadState: MutableLiveData<State>,
     val repository: BaseRepository
 ) : Observer<T> {
+
     override fun onError(e: Throwable) {
         Toast.makeText(CheYyApplication.context,HandleException.ExceptionHandle(e),Toast.LENGTH_LONG).show()
         HandleException.ExceptionHandle(e)
@@ -35,10 +37,12 @@ import io.reactivex.disposables.Disposable
 
     override fun onComplete() {
         //与error方法不会同时执行
+
     }
 
     override fun onSubscribe(d: Disposable) {
         repository.addSubscribe(d)
+
     }
 
     override fun onNext(response: T) {

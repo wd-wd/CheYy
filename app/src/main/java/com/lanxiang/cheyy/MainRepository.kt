@@ -1,14 +1,9 @@
 package com.lanxiang.cheyy
 
 import android.arch.lifecycle.MutableLiveData
-import com.lanxiang.mvvm.base.BaseRepository
 import com.lanxiang.mvvm.http.State
-import com.lanxiang.mvvm.http.StateType
 import com.lanxiang.mvvm.http.response.BaseResponse
 import com.lanxiang.mvvm.utlis.SchedulerUtils
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 /**
  *
@@ -25,7 +20,7 @@ class MainRepository(loadState:MutableLiveData<State>) : ApiRepository() {
     fun getMianData(liveData: MutableLiveData<BaseResponse<MainBean>>, map: Map<String, String>) {
         apiService.getMainData(map)
             //减少线程切换代码
-            .compose(SchedulerUtils.ioAndMianScheduler())
+            .compose(SchedulerUtils.ioAndMainScheduler())
             .subscribe (BaseObserver(liveData,loadState,this))
 
     }

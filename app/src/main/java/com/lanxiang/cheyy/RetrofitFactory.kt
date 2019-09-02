@@ -92,9 +92,9 @@ class RetrofitFactory private constructor() {
 //              .addInterceptor(addCacheInterceptor())
             .addInterceptor(httpLoggingInterceptor) //日志,所有的请求响应度看到
 //            .cache(cache)  //添加缓存
-            .connectTimeout(60L, TimeUnit.SECONDS)
-            .readTimeout(60L, TimeUnit.SECONDS)
-            .writeTimeout(60L, TimeUnit.SECONDS)
+            .connectTimeout(10L, TimeUnit.SECONDS)
+            .readTimeout(10L, TimeUnit.SECONDS)
+            .writeTimeout(10L, TimeUnit.SECONDS)
             .build()
     }
 
